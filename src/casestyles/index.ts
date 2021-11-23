@@ -1,12 +1,28 @@
 import uppercase from './uppercase'
+import lowercase from './lowercase'
+import capitalize from './capitalize'
 
-
-export interface CaseStylesRecord {
-  readonly uppercased: string
+enum SupportedCaseStyles {
+  Uppercase = 'uppercased',
+  Lowercase = 'lowercased',
+  Capitalize = 'capitalized'
+}
+interface CaseStylesRecord {
+  [SupportedCaseStyles.Uppercase]: string
+  [SupportedCaseStyles.Lowercase]: string
+  [SupportedCaseStyles.Capitalize]: string
 }
 
-export function caseStylesFor(input: string): CaseStylesRecord {
+const caseStylesFor = (input: string): CaseStylesRecord => {
   return {
-    uppercased: uppercase(input)
+    uppercased: uppercase(input),
+    lowercased: lowercase(input),
+    capitalized: capitalize(input),
   }
+}
+
+export {
+  SupportedCaseStyles,
+  CaseStylesRecord,
+  caseStylesFor
 }

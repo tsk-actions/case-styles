@@ -1,25 +1,20 @@
-Feature: Provides case styles for a given input text
+Feature: Case styles
 
+        Scenario Outline: provides all case styles of a given text input
 
-    Background: Requesting case styles for a given input
-        Given I have a text input <aText>
-        When I request case styles for that input
+            Given I have a text input '<input>'
+             When  I request its casestyles
+             Then  I should get the all supported case styles for that text input
 
-    Scenario Outline: uppercase
-        Then I should get value <anOutput> as a result of the input uppercased
+                  | casestyle   | expected      |
+                  | uppercased  | <uppercased>  |
+                  | lowercased  | <lowercased>  |
+                  | capitalized | <capitalized> |
 
         Examples:
 
-            | aText  | anOutput |
-            | a word | A WORD   |
+                  | input        | uppercased   | lowercased   | capitalized  |
+                  | teSt A 1     | TEST A 1     | test a 1     | TeSt A 1     |
+                  | node_modules | NODE_MODULES | node_modules | Node_modules |
 
-
-# | a word  | lowercase    | -       |
-# | a word  | sentencecase | -       |
-# | a word  | titlecase    | -       |
-# | a word  | capitalize   | -       |
-# | a word  | camelcase    | -       |
-# | a word  | pascalcase   | -       |
-# | a word  | snakecase    | -       |
-# | a word  | kebabcase    | -       |
 
